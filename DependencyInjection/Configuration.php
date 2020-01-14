@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
     {
         $tree = new TreeBuilder($this->name);
 
-        $rootNode = $tree->getRootNode();
+        $rootNode = \method_exists('Symfony\Component\Config\Definition\Builder\TreeBuilder', 'getRootNode') ? $tree->getRootNode() : $tree->root($this->name);
 
         $rootNode
             ->children()
